@@ -22,7 +22,7 @@ function loadJSON(file, callback) {
 
 function choseCategory1() {
     let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
-    let namn = document.getElementById('name').innerHTML;
+    let namn = document.getElementById('name').value;
     console.log(namn);
     game = new Question(quizz.Sport, nmrOfQuestions, namn);
     game.categoryy();
@@ -63,7 +63,6 @@ class Question {
     constructor(chosenCategory, nmrOfQuestions, name) {
         this.chosenCat = chosenCategory;
         this.name = name;
-        //console.log(chosenCategory)
         this.currentQuestion = chosenCategory;
         this.counter = plussare;
         this.i = 0;
@@ -71,6 +70,7 @@ class Question {
         this.responses = "";
         this.score = 0;
 
+        //Check för att se till att användaren följer intruktioner med namn och nummer av frågor
         if(this.nmrOfQuestions > 4 || this.nmrOfQuestions < 1) {
             alert("följ instruktioner tack");
             location.reload();
