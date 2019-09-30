@@ -20,7 +20,7 @@ function loadJSON(file, callback) {
     quizz = actual_JSON;
   });
 
-function choseCategory1() {
+function choseCategory() {
     let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
     let namn = document.getElementById('name').value;
     console.log(namn);
@@ -50,7 +50,10 @@ function choseCategory4() {
 }
 
 class Quiz {
-    constructor() {
+    constructor(name, questions, counter) {
+        this.name = name;
+        this.questions = questions;
+        this.counter = counter;
     }
 }
 
@@ -91,6 +94,8 @@ class Question {
                 alert("Du fick " + this.score + " poäng!");
                 document.getElementById('catContainer').style.display = "block";
                 document.getElementById('questionContainer').style.display = "none";
+                document.getElementById('score').innerHTML = "";
+
                 this.i = 0;
                 this.nmrOfQuestions = 0;
                 this.counter = 0;
@@ -105,12 +110,13 @@ class Question {
         this.responses = document.getElementsByName("response");
         for (let i = 0; i < this.responses.length; i++) {
             if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == true) {
-                document.getElementById('statusContainer').innerHTML = "Du hade rätt";
                 console.log(this.currentQuestion[this.i].answers[i].correct);
                 this.score++;
+                document.getElementById('score').innerHTML = "Antal poäng: " + this.score;
             } else if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == false){
                 console.log("Du fick -poäng!");
                 this.score--;
+                document.getElementById('score').innerHTML = "Antal poäng: " + this.score;
             }
         }
         console.log("Antal rätt: " + this.score);

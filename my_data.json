@@ -109,7 +109,7 @@
                 ]
              },
             {
-                 "fråga": "Vad för sorts fordon har blivit väldigt populärt under senaste året?",
+                 "fråga": "Vilket fordon har blivit väldigt populärt under senaste året?",
                 "answers": [
                     {
                          "alternativ1": "El-båt",
