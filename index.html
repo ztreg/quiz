@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QuizGame</title>
+    <link rel="stylesheet" type="text/css" href="maincss.css">
+    
+</head>
+    
+</head>
+<body>
+    <h1 id="the_header">Välkommen till quizz-spelet! Varje fråga kan ha 1-4 rätta svar, du får 1 poäng för varje rätt svar och -1 poäng för varje fel svar.</h1>
+     <h2 id="text1"></h2>
+<div id="catContainer">
+    <!--<h2>Skriv in ditt namn!</h2>
+    <input type="text" id="name"><br/>
+    <h3>Hur många frågor vill du köra?</h3>
+    <input type="number" id="antalFrågor"><br/>-->
+    <h3>Vilken kategori vill du köra?</h3>
+    <button type="button" class="category" onClick="choseCategory1();" id="cat1">Sport</button>
+    <button type="button" class="category" onClick="choseCategory2();" id="cat2">Teknik</button>
+    <button type="button" class="category" onClick="choseCategory3();" id="cat3">Gaming</button>
+    <button type="button" class="category" onClick="choseCategory4();" id="cat4">Historia</button>
+   
+</div>
+
+<div class="question">
+    
+</div>
+
+
+<div id="questionContainer">
+    <div id="question"></div>
+    <label for="answer1" id="label1" onclick="changeColor()"></label> 
+    <input name="response" type="checkbox" class="answer" id="answer1" ><br/>
+    <label for="answer2" id="label2" onclick="changeColor()"></label> 
+    <input name="response" type="checkbox" class="answer" id="answer2"/><br/>
+    <label for="answer3" id="label3" onclick="changeColor()"></label> 
+    <input name="response" type="checkbox" class="answer" id="answer3"><br/>
+    <label for="answer4" id="label4" onclick="changeColor()"></label> 
+    <input name="response" type="checkbox" class="answer" id="answer4"/><br/>
+    <button type="button" id="nextQuestion" onclick="game.checking();">Nästa fråga</button>
+</div>
+
+    
+   <script src="newjs.js"></script>
+</body>
+</html>

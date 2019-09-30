@@ -1,0 +1,79 @@
+#catContainer {
+    background-color: green;
+    margin: 0 auto;
+    padding: 10px;
+    width: 60%;
+    font-size: 2em;
+}
+
+.category {
+    background-color: lightblue;
+    border: 1px black solid;
+    display: inline-block;
+    margin-left: 5%;
+    width: 50%;
+    padding: 10px;
+    
+}
+
+.category:hover {
+    background-color: blueviolet;
+}
+
+body {
+    text-align: center;
+}
+
+#questionContainer {
+    background-color: green;
+    margin: 0 auto;
+    padding: 10px;
+    width: 60%;
+    font-size: 2em;
+}
+
+/*.answer {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+}*/
+
+
+#label1, #label2, #label3, #label4 {
+width: 100%;
+background-color: white;
+
+border: 1px black solid;
+}
+
+#label1:focus {
+    background-color: darkblue;
+}
+
+#the_header {
+    width: 80%;
+    margin: 0 auto;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(3); /* IE */
+  -moz-transform: scale(3); /* FF */
+  -webkit-transform: scale(3); /* Safari and Chrome */
+  -o-transform: scale(3); /* Opera */
+  transform: scale(3);
+  padding: 10px;
+}
+
+input[type=checkbox]:active{
+    background-color: red;
+}
+/* Might want to wrap a span around your checkbox text */
+.answer
+{
+  /* Checkbox text */
+  font-size: 110%;
+  display: inline;
+}
