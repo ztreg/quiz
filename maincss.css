@@ -44,7 +44,7 @@ body {
 width: 100%;
 background-color: white;
 
-border: 1px black solid;
+
 }
 
 #label1:focus {
@@ -65,10 +65,11 @@ input[type=checkbox]
   -o-transform: scale(3); /* Opera */
   transform: scale(3);
   padding: 10px;
+  
 }
 
 input[type=checkbox]:active{
-    background-color: red;
+    color: red;
 }
 /* Might want to wrap a span around your checkbox text */
 .answer

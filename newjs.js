@@ -16,37 +16,42 @@ function loadJSON(file, callback) {
   loadJSON('my_data.json', function(response) {
     // Parse JSON string into object
     var actual_JSON = JSON.parse(response);
+    console.log(actual_JSON);
     quizz = actual_JSON;
   });
 
 function choseCategory1() {
-    //let nmrOfQuestions = document.getElementById('antalFrågor').value;
-    game = new Question(quizz.Sport, 4);
+    let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
+    let namn = document.getElementById('name').innerHTML;
+    console.log(namn);
+    game = new Question(quizz.Sport, nmrOfQuestions, namn);
     game.categoryy();
     
 }
 function choseCategory2() {
-    //let nmrOfQuestions = document.getElementById('antalFrågor').value;
-    game = new Question(quizz.Teknik, 4);
+    let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
+    let namn = document.getElementById('name').innerHTML;
+    game = new Question(quizz.Teknik, nmrOfQuestions, namn);
     game.categoryy();
     
 }
 function choseCategory3() {
-    //let nmrOfQuestions = document.getElementById('antalFrågor').value;
-    game = new Question(quizz.Gaming, 4);
+    let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
+    let namn = document.getElementById('name').innerHTML;
+    game = new Question(quizz.Gaming, nmrOfQuestions, namn);
     game.categoryy();
 }
 function choseCategory4() {
-    //let nmrOfQuestions = document.getElementById('antalFrågor').value;
-    game = new Question(quizz.Historia, 4);
+    let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
+    let namn = document.getElementById('name').innerHTML;
+    game = new Question(quizz.Historia, nmrOfQuestions, namn);
     game.categoryy();
     
 }
 
 
 class Quiz {
-    constructor(name) {
-        this.name = name;
+    constructor() {
         this.chosen = "Odefinerad";
         }
         restart() {
@@ -55,8 +60,9 @@ class Quiz {
 }
 
 class Question {
-    constructor(chosenCategory, nmrOfQuestions) {
+    constructor(chosenCategory, nmrOfQuestions, name) {
         this.chosenCat = chosenCategory;
+        this.name = name;
         //console.log(chosenCategory)
         this.currentQuestion = chosenCategory;
         this.counter = plussare;
@@ -64,11 +70,18 @@ class Question {
         this.nmrOfQuestions = nmrOfQuestions;
         this.responses = "";
         this.score = 0;
+
+        if(this.nmrOfQuestions > 4 || this.nmrOfQuestions < 1) {
+            alert("följ instruktioner tack");
+            location.reload();
+        }
     }
 
+    //Visar upp all data från json filen, frågor osv
     categoryy() {
         document.getElementById('catContainer').style.display = "none";
         document.getElementById('questionContainer').style.display = "block";      
+        document.getElementById('the_header').innerHTML = "Lycka till! " + this.name +  " haha";
             if(this.counter == this.i && this.counter < this.nmrOfQuestions ) {
                 document.getElementById('text1').innerHTML = "Fråga " + (this.counter+1) + " av " + this.nmrOfQuestions;
                 console.log("Runda: " + this.i);
@@ -95,6 +108,7 @@ class Question {
 
     //Checkar om checkboxes som "skickas in" och kollar om dem är true / false i jämförelse med jsonfilen
     checking() {
+      
         this.responses = document.getElementsByName("response");
         for (let i = 0; i < this.responses.length; i++) {
             if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == true) {
