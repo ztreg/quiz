@@ -22,6 +22,7 @@
 
 body {
     text-align: center;
+    background-color: blue;
 }
 
 #questionContainer {
@@ -44,7 +45,6 @@ body {
 width: 100%;
 background-color: white;
 
-
 }
 
 #label1:focus {
@@ -59,11 +59,11 @@ background-color: white;
 input[type=checkbox]
 {
   /* Double-sized Checkboxes */
-  -ms-transform: scale(3); /* IE */
-  -moz-transform: scale(3); /* FF */
-  -webkit-transform: scale(3); /* Safari and Chrome */
-  -o-transform: scale(3); /* Opera */
-  transform: scale(3);
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
   padding: 10px;
   
 }
@@ -78,3 +78,48 @@ input[type=checkbox]:active{
   font-size: 110%;
   display: inline;
 }
+
+#statusContainer {
+    margin: 0 auto;
+    width: 10%;
+    height: auto;
+    font-size: 1em;
+    background-color: yellow;
+}
+
+.header {
+    margin: 0 auto;
+    width: 80%;
+    height: auto;
+    font-size: 1em;
+    background-color: yellow;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+      background-color: olive;
+    }
+
+    #the_header {
+        font-size: 1.3em;
+    }
+    h3 {
+        font-size: 1em;
+    }
+
+    input[type=checkbox]
+    {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(3); /* IE */
+    -moz-transform: scale(3); /* FF */
+    -webkit-transform: scale(3); /* Safari and Chrome */
+    -o-transform: scale(3); /* Opera */
+    transform: scale(3);
+    margin: 10px;
+    }
+
+    #statusContainer {
+        font-size: 2em;
+        
+    }
+  }

@@ -49,14 +49,9 @@ function choseCategory4() {
     
 }
 
-
 class Quiz {
     constructor() {
-        this.chosen = "Odefinerad";
-        }
-        restart() {
-            location.reload();
-        }
+    }
 }
 
 class Question {
@@ -92,7 +87,7 @@ class Question {
                 document.getElementById('label4').innerHTML = this.currentQuestion[this.i].answers[3].alternativ4;
                 
             } else {
-                //Visar score, resettar egenskaperna och gör ett nytt game
+                //Visar totalscore, resettar egenskaperna och gör ett nytt game
                 alert("Du fick " + this.score + " poäng!");
                 document.getElementById('catContainer').style.display = "block";
                 document.getElementById('questionContainer').style.display = "none";
@@ -101,8 +96,6 @@ class Question {
                 this.counter = 0;
                 this.chosenCat = "";
                 let game = new Question();
-                
-
             }     
     }
 
@@ -112,7 +105,7 @@ class Question {
         this.responses = document.getElementsByName("response");
         for (let i = 0; i < this.responses.length; i++) {
             if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == true) {
-                console.log("Du fick +poäng!");
+                document.getElementById('statusContainer').innerHTML = "Du hade rätt";
                 console.log(this.currentQuestion[this.i].answers[i].correct);
                 this.score++;
             } else if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == false){
