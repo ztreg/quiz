@@ -13,21 +13,21 @@
 <body>
     <h1 id="the_header">Välkommen till quizz-spelet! Varje fråga kan ha 1-4 rätta svar, du får 1 poäng för varje rätt svar och -1 poäng för varje fel svar.</h1>
      <h2 id="text1"></h2>
-<div id="catContainer">
-    <!--<h2>Skriv in ditt namn!</h2>
-    <input type="text" id="name"><br/>
-    <h3>Hur många frågor vill du köra?</h3>
-    <input type="number" id="antalFrågor"><br/>-->
+    <div id="catContainer">
+        <form>
+            Namn:<br>
+            <input type="text" id="name"><br>
+            Antal frågor (1-4):<br>
+            <input type="number" id="nmrOfQuestions">
+          </form>
     <h3>Vilken kategori vill du köra?</h3>
     <button type="button" class="category" onClick="choseCategory1();" id="cat1">Sport</button>
     <button type="button" class="category" onClick="choseCategory2();" id="cat2">Teknik</button>
     <button type="button" class="category" onClick="choseCategory3();" id="cat3">Gaming</button>
     <button type="button" class="category" onClick="choseCategory4();" id="cat4">Historia</button>
-   
-</div>
+   </div><!--catContainer end-->
 
 <div class="question">
-    
 </div>
 
 
