@@ -23,20 +23,17 @@ function loadJSON(file, callback) {
     quizz = actual_JSON;
   });
 
-  
-function choseCategory1() {
+
+function startGame() {
     let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
     let namn = document.getElementById('name').value;
-
-    for(let i = 0; i < quizz.length; i++) {
-        if(namn == quizz[i]) {
-            let chosen = quizz.namn;
-        }
-    }
-    
-    console.log(namn);
-    game = new Question(chosen, nmrOfQuestions, namn);
+    let theCategory =  document.getElementById('category').value;
+    console.log(theCategory);
+    //console.log(namn);
+    game = new Question(quizz.theCategory, nmrOfQuestions, namn);
+    console.log(game);
     game.categoryy();
+    
     
 }
 /*function choseCategory2() {
@@ -70,7 +67,7 @@ class Quiz {
 
 class Question {
     constructor(chosenCategory, nmrOfQuestions, name) {
-        this.chosenCat = chosenCategory;
+        this.category = chosenCategory;
         this.name = name;
         this.currentQuestion = chosenCategory;
         this.counter = plussare;
@@ -78,8 +75,9 @@ class Question {
         this.nmrOfQuestions = nmrOfQuestions;
         this.responses = "";
         this.score = 0;
+        console.log(this.chosenCategory);
 
-        //Check för att se till att användaren följer intruktioner med namn och nummer av frågor
+        //Check för att se till att användaren följer intruktioner med nummer av frågor
         if(this.nmrOfQuestions > 4 || this.nmrOfQuestions < 1) {
             alert("följ instruktioner tack");
             location.reload();

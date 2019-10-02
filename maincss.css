@@ -27,6 +27,7 @@ body {
 }
 
 #questionContainer {
+    display: none;
     background-color: lightskyblue;
     margin: 0 auto;
     padding: 10px;
@@ -130,6 +131,7 @@ input[type=checkbox]:active{
         font-size: 0.8em;
     }
     #nextQuestion {
+        
         font-size: 1em;
         background-color: green;
     }
