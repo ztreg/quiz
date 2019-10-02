@@ -15,24 +15,35 @@ function loadJSON(file, callback) {
     xobj.send(null);  
   }
   
-  //tar datar från json-filen och lägger i variabeln "quizz"
+  //tar datan från json-filen och lägger i variabeln "quizz"
   loadJSON('my_data.json', function(response) {
     // Parse JSON string into object
     var actual_JSON = JSON.parse(response);
-    console.log(actual_JSON);
+    
     quizz = actual_JSON;
   });
 
 
-function startGame() {
+function getInfo() {
     let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
     let namn = document.getElementById('name').value;
     let theCategory =  document.getElementById('category').value;
-    console.log(theCategory);
-    //console.log(namn);
-    game = new Question(quizz.theCategory, nmrOfQuestions, namn);
-    console.log(game);
-    game.categoryy();
+    let send;
+
+    if(theCategory == "Sport") {
+        send = quizz.Sport;
+    }
+    else if(theCategory == "Teknik") {
+        send = quizz.Teknik;
+    }
+    else if(theCategory == "Gaming") {
+        send = quizz.Gaming;
+    }
+    else if(theCategory == "Historia") {
+        send = quizz.Historia;
+    }
+    game = new Question(send, nmrOfQuestions, namn);
+    game.startGame();
     
     
 }
@@ -84,8 +95,8 @@ class Question {
         }
     }
 
-    //Visar upp all data från json filen, frågor osv
-    categoryy() {
+    //VisstartGamear upp all data från json filen, frågor osv
+    startGame() {
         document.getElementById('catContainer').style.display = "none";
         document.getElementById('questionContainer').style.display = "block";      
         document.getElementById('the_header').innerHTML = "Lycka till! " + this.name +  " haha";
@@ -115,7 +126,6 @@ class Question {
 
     //Checkar om checkboxes som "skickas in" och kollar om dem är true / false i jämförelse med jsonfilen
     checking() {
-      
         this.responses = document.getElementsByName("response");
         for (let i = 0; i < this.responses.length; i++) {
             if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == true) {
@@ -131,7 +141,7 @@ class Question {
         console.log("Antal rätt: " + this.score);
         this.counter++;
         this.i++;
-        this.categoryy();
+        this.startGame();
         console.log("hej");
 
         //Tömmer checkboxes
