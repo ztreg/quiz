@@ -1,5 +1,7 @@
+//Variabeln som ska spara all JSON data.
 var quizz;
 
+//Funktionen loadJSON som gör error checks om inte saker hämtas som det ska.
 function loadJSON(file, callback) {   
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
@@ -13,6 +15,7 @@ function loadJSON(file, callback) {
     xobj.send(null);  
   }
   
+  //tar datar från json-filen och lägger i variabeln "quizz"
   loadJSON('my_data.json', function(response) {
     // Parse JSON string into object
     var actual_JSON = JSON.parse(response);
@@ -20,15 +23,23 @@ function loadJSON(file, callback) {
     quizz = actual_JSON;
   });
 
-function choseCategory() {
+  
+function choseCategory1() {
     let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
     let namn = document.getElementById('name').value;
+
+    for(let i = 0; i < quizz.length; i++) {
+        if(namn == quizz[i]) {
+            let chosen = quizz.namn;
+        }
+    }
+    
     console.log(namn);
-    game = new Question(quizz.Sport, nmrOfQuestions, namn);
+    game = new Question(chosen, nmrOfQuestions, namn);
     game.categoryy();
     
 }
-function choseCategory2() {
+/*function choseCategory2() {
     let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
     let namn = document.getElementById('name').innerHTML;
     game = new Question(quizz.Teknik, nmrOfQuestions, namn);
@@ -47,7 +58,7 @@ function choseCategory4() {
     game = new Question(quizz.Historia, nmrOfQuestions, namn);
     game.categoryy();
     
-}
+}*/
 
 class Quiz {
     constructor(name, questions, counter) {
