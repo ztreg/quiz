@@ -246,7 +246,7 @@
                          "correct" : false
                     },
                     {
-                        "alternativ2": "Skröck", 
+                        "alternativ2": "Skräck", 
                         "correct" : true
                     },
                     {
@@ -304,22 +304,22 @@
                 ]
             },
             {
-                 "fråga": "När började och slutade ",
+                 "fråga": "När började och slutade Vietnamkriget?",
                 "answers": [
                     {
-                         "alternativ1": "El-båt",
-                         "correct" : false
+                         "alternativ1": "1955",
+                         "correct" : true
                     },
                     {
-                        "alternativ2": "El-skidor", 
+                        "alternativ2": "1923", 
                         "correct" : false
                     },
                     {
-                        "alternativ3": "El-Snowboard",
+                        "alternativ3": "1944",
                         "correct" : false
                     },
                     {
-                        "alternativ4": "El-sparkcykel",
+                        "alternativ4": "1975",
                         "correct" : true
                     }
                 ]

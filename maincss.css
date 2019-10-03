@@ -6,6 +6,7 @@
     font-size: 2em;
 }
 
+
 .category {
     background-color: lightblue;
     border: 1px black solid;
@@ -24,7 +25,7 @@
 body {
     font-family: 'Indie Flower', cursive;
     text-align: center;
-    width: 100%;
+   
     background-image: url("cube.jpg");   
 }
 
@@ -103,6 +104,9 @@ input[type=checkbox]:active{
 }
 
 @media screen and (max-width: 600px) {
+    #statusContainer {
+        font-size: 2em;
+    }
     #the_header {
         font-size: 1.3em;
     }
@@ -119,9 +123,7 @@ input[type=checkbox]:active{
     transform: scale(3);
     margin: 10px;
     }
-    #statusContainer {
-        font-size: 2em;
-    }
+    
     #status {
         font-size: 0.8em;
     }
@@ -136,7 +138,13 @@ input[type=checkbox]:active{
 
   @media screen and (max-width: 250px) {
 
+    #statusContainer {
+        font-size: 1em;
+    }
+
     input[type=text] {
         width: 50%;
     }
+
+   
   }

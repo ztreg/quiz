@@ -18,7 +18,7 @@
         <h1 id="the_header">Viktigt! Välkommen till quizz-spelet! Varje fråga kan ha 1-4 rätta svar, du får 1 poäng för
             varje rätt svar och -1 poäng för varje fel svar.</h1>
         <h2 id="text1"></h2>
-    </div>
+    </div><!--header end-->
     <div id="catContainer">
         Namn: <input type="text" id="name" value=""></br>
         Antal frågor (1-4):
@@ -27,21 +27,19 @@
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
-        </select>
+        </select><!--nmrOfQuestions end-->
         <h3>Välj Katerogi för att börja quizzet</h3>
         <select id="category">
             <option value="Sport">Sport</option>
             <option value="Teknik">Teknik</option>
             <option value="Gaming">Gaming</option>
             <option value="Historia">Historia</option>
-        </select>
+        </select><!--category end-->
         <button type="button" class="category" onClick="getInfo();">Starta spelet!</button>
- </div><!--catContainer end-->
+     </div><!--catContainer end-->
 
     <div class="question">
     </div>
-
-
     <div id="questionContainer">
         <div id="question"></div>
         <label for="answer1" id="label1" onclick="changeColor()"></label>
@@ -53,12 +51,12 @@
         <label for="answer4" id="label4" onclick="changeColor()"></label>
         <input name="response" type="checkbox" class="answer" id="answer4" /><br />
         <button type="button" id="nextQuestion" onclick="game.checking();">Nästa fråga</button>
-    </div>
+    </div><!--questionContainer end-->
 
     <div id="statusContainer">
         <div id="score"></div>
         <div id="status">Tänk på att du får -poäng för varje fel check!</div>
-    </div>
+    </div><!--statusContainer end-->
 
 
     <script src="newjs.js"></script>
