@@ -81,25 +81,18 @@ class Question {
         this.category = chosenCategory;
         this.name = name;
         this.currentQuestion = chosenCategory;
-        this.counter = plussare;
+        this.counter = 0;
         this.i = 0;
         this.nmrOfQuestions = nmrOfQuestions;
         this.responses = "";
         this.score = 0;
-        console.log(this.chosenCategory);
-
-        //Check för att se till att användaren följer intruktioner med nummer av frågor
-        if(this.nmrOfQuestions > 4 || this.nmrOfQuestions < 1) {
-            alert("följ instruktioner tack");
-            location.reload();
-        }
     }
 
-    //VisstartGamear upp all data från json filen, frågor osv
+    //Visar upp all data från json filen, frågor osv
     startGame() {
         document.getElementById('catContainer').style.display = "none";
         document.getElementById('questionContainer').style.display = "block";      
-        document.getElementById('the_header').innerHTML = "Lycka till! " + this.name +  " haha";
+        document.getElementById('the_header').innerHTML = "Lycka till! " + this.name;
             if(this.counter == this.i && this.counter < this.nmrOfQuestions ) {
                 document.getElementById('text1').innerHTML = "Fråga " + (this.counter+1) + " av " + this.nmrOfQuestions;
                 console.log("Runda: " + this.i);
@@ -110,7 +103,7 @@ class Question {
                 document.getElementById('label4').innerHTML = this.currentQuestion[this.i].answers[3].alternativ4;
                 
             } else {
-                //Visar totalscore, resettar egenskaperna och gör ett nytt game
+                //Visar totalscore, resettar egenskaperna och gör ett nytt game objekt
                 alert("Du fick " + this.score + " poäng!");
                 document.getElementById('catContainer').style.display = "block";
                 document.getElementById('questionContainer').style.display = "none";
@@ -127,22 +120,23 @@ class Question {
     //Checkar om checkboxes som "skickas in" och kollar om dem är true / false i jämförelse med jsonfilen
     checking() {
         this.responses = document.getElementsByName("response");
-        for (let i = 0; i < this.responses.length; i++) {
+        for (let i = 0; i < this.responses.length; i++) {  
             if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == true) {
-                console.log(this.currentQuestion[this.i].answers[i].correct);
+                console.log("denna checbox va rätt");
                 this.score++;
+                localScore = this.score;
                 document.getElementById('score').innerHTML = "Antal poäng: " + this.score;
             } else if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == false){
-                console.log("Du fick -poäng!");
+                console.log("Denna checkbox va fel");
                 this.score--;
                 document.getElementById('score').innerHTML = "Antal poäng: " + this.score;
             }
         }
+        //Plussar på variabler för att visa nästa rad i json(quizz)
         console.log("Antal rätt: " + this.score);
         this.counter++;
         this.i++;
         this.startGame();
-        console.log("hej");
 
         //Tömmer checkboxes
         for(let i = 0; i < this.responses.length; i++) {
@@ -152,20 +146,12 @@ class Question {
 
 }
 
-let plussare = 0;
-
 
 function changeColor() {
     console.log("gonna do something here");
 }
 
-
-//let test = getJSON('http://www.mocky.io/v2/5d90a9ad3000007000cacf96.json');
-
 let itsTime = new Quiz();
 let game = new Question();
-//question.category == question.chosenCat;
-
-//////////
 
 
