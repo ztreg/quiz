@@ -103,11 +103,12 @@ class Question {
                 document.getElementById('label4').innerHTML = this.currentQuestion[this.i].answers[3].alternativ4;
                 
             } else {
-                //Visar totalscore, resettar egenskaperna och gör ett nytt game objekt
+                //Visar totalscore, resettar egenskaperna på element och gör ett nytt game objekt
                 alert("Du fick " + this.score + " poäng!");
                 document.getElementById('catContainer').style.display = "block";
                 document.getElementById('questionContainer').style.display = "none";
                 document.getElementById('score').innerHTML = "";
+                document.getElementById('the_header').innerHTML = "";
 
                 this.i = 0;
                 this.nmrOfQuestions = 0;
@@ -124,7 +125,7 @@ class Question {
             if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == true) {
                 console.log("denna checbox va rätt");
                 this.score++;
-                localScore = this.score;
+                
                 document.getElementById('score').innerHTML = "Antal poäng: " + this.score;
             } else if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == false){
                 console.log("Denna checkbox va fel");

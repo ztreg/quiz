@@ -22,8 +22,10 @@
 }
 
 body {
+    font-family: 'Indie Flower', cursive;
     text-align: center;
-    background-color: blue;
+    width: 100%;
+    background-image: url("cube.jpg");   
 }
 
 #questionContainer {
@@ -101,17 +103,12 @@ input[type=checkbox]:active{
 }
 
 @media screen and (max-width: 600px) {
-    body {
-      background-color: olive;
-    }
-
     #the_header {
         font-size: 1.3em;
     }
     h3 {
         font-size: 1em;
     }
-
     input[type=checkbox]
     {
     /* Double-sized Checkboxes */
@@ -122,21 +119,24 @@ input[type=checkbox]:active{
     transform: scale(3);
     margin: 10px;
     }
-
     #statusContainer {
         font-size: 2em;
-        
     }
     #status {
         font-size: 0.8em;
     }
-    #nextQuestion {
-        
+    #nextQuestion {      
         font-size: 1em;
         background-color: green;
     }
-
     #nextQuestion:hover {
         background-color: darkgreen;
+    }
+  }
+
+  @media screen and (max-width: 250px) {
+
+    input[type=text] {
+        width: 50%;
     }
   }
