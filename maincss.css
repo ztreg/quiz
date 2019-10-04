@@ -18,7 +18,7 @@
 }
 
 .category:hover {
-    background-color: black;
+    background-color: blue;
     color: black;
 }
 
@@ -27,6 +27,18 @@ body {
     text-align: center;
    
     background-image: url("cube.jpg");   
+}
+
+#nmrOfQuestions {
+    width: 50%;
+    font-size: 0.7em;
+    
+}
+
+option{
+    background-color: black;
+    color: white;
+
 }
 
 #questionContainer {
@@ -78,7 +90,7 @@ input[type=checkbox]
 input[type=checkbox]:active{
     color: red;
 }
-/* Might want to wrap a span around your checkbox text */
+
 .answer
 {
   /* Checkbox text */
@@ -137,7 +149,6 @@ input[type=checkbox]:active{
   }
 
   @media screen and (max-width: 250px) {
-
     #statusContainer {
         font-size: 1em;
     }
@@ -145,6 +156,4 @@ input[type=checkbox]:active{
     input[type=text] {
         width: 50%;
     }
-
-   
   }

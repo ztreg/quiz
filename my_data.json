@@ -325,23 +325,23 @@
                 ]
             },
             {
-                 "fråga": "Vilket år började 2a världskriget?",
+                 "fråga": "Vilket år blev Olof Palme mördad?",
                 "answers": [
                     {
-                         "alternativ1": "1999",
-                         "correct" : true
+                         "alternativ1": "1981",
+                         "correct" : false
                     },
                     {
-                        "alternativ2": "El-skidor", 
+                        "alternativ2": "1983", 
                         "correct" : false
                     },
                     {
-                        "alternativ3": "El-Snowboard",
-                        "correct" : false
-                    },
-                    {
-                        "alternativ4": "El-sparkcykel",
+                        "alternativ3": "1986",
                         "correct" : true
+                    },
+                    {
+                        "alternativ4": "1989",
+                        "correct" : false
                     }
                 ]
             }

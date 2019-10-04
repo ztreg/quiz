@@ -23,77 +23,91 @@ function loadJSON(file, callback) {
     quizz = actual_JSON;
   });
 
-
+//Allmän funktion som hämtar in data och skapar objekt med user-data, skulle kunna ha något liknande som en metod.
 function getInfo() {
     let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
     let namn = document.getElementById('name').value;
     let theCategory =  document.getElementById('category').value;
-    let send;
+    let cat;
 
     if(theCategory == "Sport") {
-        send = quizz.Sport;
+        cat = quizz.Sport;
     }
     else if(theCategory == "Teknik") {
-        send = quizz.Teknik;
+        cat = quizz.Teknik;
     }
     else if(theCategory == "Gaming") {
-        send = quizz.Gaming;
+        cat = quizz.Gaming;
     }
     else if(theCategory == "Historia") {
-        send = quizz.Historia;
+        cat = quizz.Historia;
     }
-    game = new Question(send, nmrOfQuestions, namn);
+    game = new Quiz(namn, nmrOfQuestions);
+    question = new Question(cat, nmrOfQuestions);
     game.startGame();
     
     
 }
-/*function choseCategory2() {
-    let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
-    let namn = document.getElementById('name').innerHTML;
-    game = new Question(quizz.Teknik, nmrOfQuestions, namn);
-    game.categoryy();
-    
-}
-function choseCategory3() {
-    let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
-    let namn = document.getElementById('name').innerHTML;
-    game = new Question(quizz.Gaming, nmrOfQuestions, namn);
-    game.categoryy();
-}
-function choseCategory4() {
-    let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
-    let namn = document.getElementById('name').innerHTML;
-    game = new Question(quizz.Historia, nmrOfQuestions, namn);
-    game.categoryy();
-    
-}*/
-
+//Klasen Quiz håller reda på användarens Namn, antalet frågor, antalet rätt/fel och om det är klart.
 class Quiz {
-    constructor(name, questions, counter) {
+    constructor(name, nmrOfQuestions) {
         this.name = name;
-        this.questions = questions;
-        this.counter = counter;
+        this.nmrOfQuestions = nmrOfQuestions; 
+        this.correct = 0;
+        this.done = 0;
     }
-}
-
-class Question {
-    constructor(chosenCategory, nmrOfQuestions, name) {
-        this.category = chosenCategory;
-        this.name = name;
-        this.currentQuestion = chosenCategory;
-        this.counter = 0;
-        this.i = 0;
-        this.nmrOfQuestions = nmrOfQuestions;
-        this.responses = "";
-        this.score = 0;
-    }
-
-    //Visar upp all data från json filen, frågor osv
     startGame() {
         document.getElementById('catContainer').style.display = "none";
         document.getElementById('questionContainer').style.display = "block";      
         document.getElementById('the_header').innerHTML = "Lycka till! " + this.name;
+        //Om spelet är klart
+        if(this.done == 1) {
+            document.getElementById('catContainer').style.display = "block";
+            document.getElementById('questionContainer').style.display = "none";
+            document.getElementById('score').innerHTML = "";
+            document.getElementById('the_header').innerHTML = "";
+            if(this.correct > 4) {
+                alert("Bra jobbat "  + this.name + " du fick " + this.correct + " poäng");
+            }
+            else if (this.correct < 4 && this.correct > 0) {
+                alert("inte okej " + this.name +  " du fick " + this.correct + " poäng");
+            } else {
+                alert("Du behöver öva quiz... " + this.name +  " du fick " + this.correct + " poäng");
+            } 
+            this.done = 0;
+            this.correct = 0;
+            question.chosenCat = "";
+            let game = new Quiz();
+           
+        } 
+        //Om spelet inte är klart så plussas variabler och kör
+        else {
+            console.log("Antal rätt: " + this.correct);
+            question.i++;
+            question.counter++;
+            question.nextQuestion();
+        }
+       
+    }
+}
+
+//Klassen Question håller redan på frågekategori, frågan, 
+//svartsalternativen och en check-metod för att kolla om svaren är rätt eller inte
+class Question {
+    constructor(chosenCategory, nmrOfQuestions) {
+        this.currentQuestion = chosenCategory;
+        this.i = -1;
+        this.nmrOfQuestions = nmrOfQuestions;
+        this.responses = "";
+        this.score = 0;
+        this.counter = -1;
+        
+    }
+
+    //Visar upp all data från json filen, frågor osv om spelet inte är klart
+    nextQuestion() {
             if(this.counter == this.i && this.counter < this.nmrOfQuestions ) {
+                console.log("Gick in");
                 document.getElementById('text1').innerHTML = "Fråga " + (this.counter+1) + " av " + this.nmrOfQuestions;
                 console.log("Runda: " + this.i);
                 document.getElementById('question').innerHTML = this.currentQuestion[this.i].fråga;
@@ -103,18 +117,9 @@ class Question {
                 document.getElementById('label4').innerHTML = this.currentQuestion[this.i].answers[3].alternativ4;
                 
             } else {
-                //Visar totalscore, resettar egenskaperna på element och gör ett nytt game objekt
-                alert("Du fick " + this.score + " poäng!");
-                document.getElementById('catContainer').style.display = "block";
-                document.getElementById('questionContainer').style.display = "none";
-                document.getElementById('score').innerHTML = "";
-                document.getElementById('the_header').innerHTML = "";
-
-                this.i = 0;
-                this.nmrOfQuestions = 0;
-                this.counter = 0;
-                this.chosenCat = "";
-                let game = new Question();
+                console.log("Gick inte in");
+                game.done = 1;
+                game.startGame();  
             }     
     }
 
@@ -124,35 +129,37 @@ class Question {
         for (let i = 0; i < this.responses.length; i++) {  
             if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == true) {
                 console.log("denna checbox va rätt");
-                this.score++;
+                game.correct++;
                 
-                document.getElementById('score').innerHTML = "Antal poäng: " + this.score;
+                document.getElementById('score').innerHTML = "Antal poäng: " + game.correct;
             } else if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == false){
                 console.log("Denna checkbox va fel");
-                this.score--;
-                document.getElementById('score').innerHTML = "Antal poäng: " + this.score;
+                game.correct--;
+                document.getElementById('score').innerHTML = "Antal poäng: " + game.correct;
             }
         }
         //Plussar på variabler för att visa nästa rad i json(quizz)
-        console.log("Antal rätt: " + this.score);
-        this.counter++;
-        this.i++;
-        this.startGame();
+        
 
         //Tömmer checkboxes
         for(let i = 0; i < this.responses.length; i++) {
             this.responses[i].checked = false;
         }
+        game.startGame();
     }
 
 }
-
 
 function changeColor() {
     console.log("gonna do something here");
 }
 
-let itsTime = new Quiz();
-let game = new Question();
+
+let game = new Quiz();
+let question = new Question();
 
 
+/*document.addEventListener('DOMContentLoaded', (event) => {
+    let check = document.getElementById('nextQuestion');
+    check.addEventListener("click", question.checking);
+});*/

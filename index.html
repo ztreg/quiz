@@ -18,6 +18,8 @@
         <h1 id="the_header">Viktigt! Välkommen till quizz-spelet! Varje fråga kan ha 1-4 rätta svar, du får 1 poäng för
             varje rätt svar och -1 poäng för varje fel svar.</h1>
         <h2 id="text1"></h2>
+        <h3 id="currentCategory">Category: </h3>
+    </div>
     </div><!--header end-->
     <div id="catContainer">
         Namn: <input type="text" id="name" value=""></br>
@@ -42,15 +44,15 @@
     </div>
     <div id="questionContainer">
         <div id="question"></div>
-        <label for="answer1" id="label1" onclick="changeColor()"></label>
+        <label for="answer1" id="label1"></label>
         <input name="response" type="checkbox" class="answer" id="answer1"><br />
-        <label for="answer2" id="label2" onclick="changeColor()"></label>
+        <label for="answer2" id="label2"></label>
         <input name="response" type="checkbox" class="answer" id="answer2" /><br />
-        <label for="answer3" id="label3" onclick="changeColor()"></label>
+        <label for="answer3" id="label3" ></label>
         <input name="response" type="checkbox" class="answer" id="answer3"><br />
-        <label for="answer4" id="label4" onclick="changeColor()"></label>
+        <label for="answer4" id="label4"></label>
         <input name="response" type="checkbox" class="answer" id="answer4" /><br />
-        <button type="button" id="nextQuestion" onclick="game.checking();">Nästa fråga</button>
+        <button type="button" id="nextQuestion" onclick="question.checking();">Nästa fråga</button>
     </div><!--questionContainer end-->
 
     <div id="statusContainer">
@@ -59,6 +61,7 @@
     </div><!--statusContainer end-->
 
 
+    <script src="jsonfunctuiner.js"></script>
     <script src="newjs.js"></script>
 </body>
 
