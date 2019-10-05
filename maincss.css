@@ -1,3 +1,9 @@
+body {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    background-image: url("cube.jpg");   
+}
+
 #catContainer {
     background-color: lightskyblue;
     margin: 0 auto;
@@ -22,14 +28,12 @@
     color: black;
 }
 
-body {
-    font-family: 'Indie Flower', cursive;
-    text-align: center;
-   
-    background-image: url("cube.jpg");   
+#question {
+    background-color: gray;
 }
 
-#nmrOfQuestions {
+
+#nmrOfQuestions, #category {
     width: 50%;
     font-size: 0.7em;
     
@@ -49,13 +53,6 @@ option{
     width: 60%;
     font-size: 2em;
 }
-
-/*.answer {
-    position: absolute;
-    visibility: hidden;
-    opacity: 0;
-    width: 100%;
-}*/
 
 
 #label1, #label2, #label3, #label4 {

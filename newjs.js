@@ -1,7 +1,6 @@
 //Variabeln som ska spara all JSON data.
 var quizz;
 
-//Funktionen loadJSON som gör error checks om inte saker hämtas som det ska.
 function loadJSON(file, callback) {   
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
@@ -65,14 +64,17 @@ class Quiz {
             document.getElementById('catContainer').style.display = "block";
             document.getElementById('questionContainer').style.display = "none";
             document.getElementById('score').innerHTML = "";
-            document.getElementById('the_header').innerHTML = "";
-            if(this.correct > 4) {
-                alert("Bra jobbat "  + this.name + " du fick " + this.correct + " poäng");
+            if(this.correct >= 4) {
+                document.getElementById('the_header').innerHTML = "Bra jobbat "  + this.name + " du fick " + this.correct + " poäng";
+            
+                console.log("Totala poäng: " + this.correct);
             }
             else if (this.correct < 4 && this.correct > 0) {
-                alert("inte okej " + this.name +  " du fick " + this.correct + " poäng");
+                document.getElementById('the_header').innerHTML = "Du kan göra bättre "  + this.name + " du fick " + this.correct + " poäng";
+                console.log("Totala poäng: " + this.correct);
             } else {
-                alert("Du behöver öva quiz... " + this.name +  " du fick " + this.correct + " poäng");
+                document.getElementById('the_header').innerHTML = "Katastrof "  + this.name + " du fick " + this.correct + " poäng";
+                console.log("Totala poäng: " + this.correct);
             } 
             this.done = 0;
             this.correct = 0;
@@ -95,10 +97,9 @@ class Quiz {
 //svartsalternativen och en check-metod för att kolla om svaren är rätt eller inte
 class Question {
     constructor(chosenCategory, nmrOfQuestions) {
-        this.currentQuestion = chosenCategory;
+        this.chosenCategory = chosenCategory;
         this.i = -1;
         this.nmrOfQuestions = nmrOfQuestions;
-        this.responses = "";
         this.score = 0;
         this.counter = -1;
         
@@ -107,14 +108,13 @@ class Question {
     //Visar upp all data från json filen, frågor osv om spelet inte är klart
     nextQuestion() {
             if(this.counter == this.i && this.counter < this.nmrOfQuestions ) {
-                console.log("Gick in");
                 document.getElementById('text1').innerHTML = "Fråga " + (this.counter+1) + " av " + this.nmrOfQuestions;
                 console.log("Runda: " + this.i);
-                document.getElementById('question').innerHTML = this.currentQuestion[this.i].fråga;
-                document.getElementById('label1').innerHTML = this.currentQuestion[this.i].answers[0].alternativ1;
-                document.getElementById('label2').innerHTML = this.currentQuestion[this.i].answers[1].alternativ2;
-                document.getElementById('label3').innerHTML = this.currentQuestion[this.i].answers[2].alternativ3;
-                document.getElementById('label4').innerHTML = this.currentQuestion[this.i].answers[3].alternativ4;
+                document.getElementById('question').innerHTML = this.chosenCategory[this.i].fråga;
+                document.getElementById('label1').innerHTML = this.chosenCategory[this.i].answers[0].alternativ1;
+                document.getElementById('label2').innerHTML = this.chosenCategory[this.i].answers[1].alternativ2;
+                document.getElementById('label3').innerHTML = this.chosenCategory[this.i].answers[2].alternativ3;
+                document.getElementById('label4').innerHTML = this.chosenCategory[this.i].answers[3].alternativ4;
                 
             } else {
                 console.log("Gick inte in");
@@ -128,40 +128,32 @@ class Question {
     checking() {
         let right = 0;
         let wrong = 0;
-        this.responses = document.getElementsByName("response");
-        for (let i = 0; i < this.responses.length && wrong == 0; i++) {  
-            if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == true) {
+        let responses = document.getElementsByName("response");
+        for (let i = 0; i < responses.length && wrong == 0; i++) {  
+            if(responses[i].checked == true && this.chosenCategory[this.i].answers[i].correct == true) {
                 right = 1;
                 console.log("rätt" + right);
-                document.getElementById('score').innerHTML = "Antal poäng: " + game.correct;
-            } else if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == false){
+                
+            } else if(responses[i].checked == true && this.chosenCategory[this.i].answers[i].correct == false){
                 console.log("Du hade minst 1 fel och därför fick du inte poäng");
                 right = 0;
                 wrong = 1;
-                document.getElementById('score').innerHTML = "Antal poäng: " + game.correct;
             }
         }
         game.correct = (game.correct + right);
+        document.getElementById('score').innerHTML = "Antal poäng: " + game.correct;
         console.log("totala frågor rätt "+ game.correct);
-        //Plussar på variabler för att visa nästa rad i json(quizz)
         
-
         //Tömmer checkboxes
-        for(let i = 0; i < this.responses.length; i++) {
-            this.responses[i].checked = false;
+        for(let i = 0; i < responses.length; i++) {
+            responses[i].checked = false;
         }
         game.startGame();
     }
 
 }
-
-function changeColor() {
-    console.log("gonna do something here");
-}
-
-
-let game = new Quiz();
-let question = new Question();
+//let game = new Quiz();
+//let question = new Question();
 
 
 /*document.addEventListener('DOMContentLoaded', (event) => {
