@@ -64,18 +64,9 @@ class Quiz {
             document.getElementById('catContainer').style.display = "block";
             document.getElementById('questionContainer').style.display = "none";
             document.getElementById('score').innerHTML = "";
-            if(this.correct >= 4) {
-                document.getElementById('the_header').innerHTML = "Bra jobbat "  + this.name + " du fick " + this.correct + " poäng";
             
-                console.log("Totala poäng: " + this.correct);
-            }
-            else if (this.correct < 4 && this.correct > 0) {
-                document.getElementById('the_header').innerHTML = "Du kan göra bättre "  + this.name + " du fick " + this.correct + " poäng";
-                console.log("Totala poäng: " + this.correct);
-            } else {
-                document.getElementById('the_header').innerHTML = "Katastrof "  + this.name + " du fick " + this.correct + " poäng";
-                console.log("Totala poäng: " + this.correct);
-            } 
+            document.getElementById('the_header').innerHTML = "Bra jobbat "  + this.name + " du fick " + this.correct + " poäng";
+      
             this.done = 0;
             this.correct = 0;
             question.chosenCat = "";

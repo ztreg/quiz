@@ -1,5 +1,5 @@
 body {
-    font-family: 'Cinzel', serif;
+    font-family: 'Kalam', cursive;
     text-align: center;
     background-image: url("cube.jpg");   
 }
@@ -55,6 +55,8 @@ option{
 }
 
 
+
+
 #label1, #label2, #label3, #label4 {
 width: 100%;
 background-color: white;
@@ -95,6 +97,7 @@ input[type=checkbox]:active{
   display: inline;
 }
 
+
 #statusContainer {
     margin: 0 auto;
     padding: 10px;
@@ -102,6 +105,7 @@ input[type=checkbox]:active{
     height: auto;
     font-size: 1em;
     background-color: yellow;
+    
 }
 
 .header {
@@ -113,8 +117,8 @@ input[type=checkbox]:active{
 }
 
 @media screen and (max-width: 600px) {
-    #statusContainer {
-        font-size: 2em;
+    #question {
+        font-size: 0.8em;
     }
     #the_header {
         font-size: 1.3em;
@@ -146,6 +150,9 @@ input[type=checkbox]:active{
   }
 
   @media screen and (max-width: 250px) {
+    #question {
+        font-size: 0.7em;
+    }
     #statusContainer {
         font-size: 1em;
     }
