@@ -80,7 +80,7 @@ class Quiz {
             let game = new Quiz();
            
         } 
-        //Om spelet inte är klart så plussas variabler och kör
+        //Om spelet inte är klart så plussas variabler och kör ut nästa frågax
         else {
             console.log("Antal rätt: " + this.correct);
             question.i++;
@@ -123,21 +123,26 @@ class Question {
             }     
     }
 
-    //Checkar om checkboxes som "skickas in" och kollar om dem är true / false i jämförelse med jsonfilen
+    //Checkar om checkboxes som "skickas in" och kollar om dem är true / false i jämförelse med jsonfilen 
+    // Om något av svaren är fel så den ur loopen och man får man 0 poäng, sedan anropas nästa
     checking() {
+        let right = 0;
+        let wrong = 0;
         this.responses = document.getElementsByName("response");
-        for (let i = 0; i < this.responses.length; i++) {  
+        for (let i = 0; i < this.responses.length && wrong == 0; i++) {  
             if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == true) {
-                console.log("denna checbox va rätt");
-                game.correct++;
-                
+                right = 1;
+                console.log("rätt" + right);
                 document.getElementById('score').innerHTML = "Antal poäng: " + game.correct;
             } else if(this.responses[i].checked == true && this.currentQuestion[this.i].answers[i].correct == false){
-                console.log("Denna checkbox va fel");
-                game.correct--;
+                console.log("Du hade minst 1 fel och därför fick du inte poäng");
+                right = 0;
+                wrong = 1;
                 document.getElementById('score').innerHTML = "Antal poäng: " + game.correct;
             }
         }
+        game.correct = (game.correct + right);
+        console.log("totala frågor rätt "+ game.correct);
         //Plussar på variabler för att visa nästa rad i json(quizz)
         
 
