@@ -22,31 +22,7 @@ function loadJSON(file, callback) {
     quizz = actual_JSON;
   });
 
-//Allmän funktion som hämtar in data och skapar objekt med user-data, skulle kunna ha något liknande som en metod.
-function getInfo() {
-    let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
-    let namn = document.getElementById('name').value;
-    let theCategory =  document.getElementById('category').value;
-    let cat;
 
-    if(theCategory == "Sport") {
-        cat = quizz.Sport;
-    }
-    else if(theCategory == "Teknik") {
-        cat = quizz.Teknik;
-    }
-    else if(theCategory == "Gaming") {
-        cat = quizz.Gaming;
-    }
-    else if(theCategory == "Historia") {
-        cat = quizz.Historia;
-    }
-    game = new Quiz(namn, nmrOfQuestions);
-    question = new Question(cat, nmrOfQuestions);
-    game.startGame();
-    
-    
-}
 //Klasen Quiz håller reda på användarens Namn, antalet frågor, antalet rätt/fel och om det är klart.
 class Quiz {
     constructor(name, nmrOfQuestions) {
@@ -64,9 +40,9 @@ class Quiz {
             document.getElementById('catContainer').style.display = "block";
             document.getElementById('questionContainer').style.display = "none";
             document.getElementById('score').innerHTML = "";
-            
+
             document.getElementById('the_header').innerHTML = "Bra jobbat "  + this.name + " du fick " + this.correct + " poäng";
-      
+            alert("Bra jobbat "  + this.name + " du fick " + this.correct + " poäng");
             this.done = 0;
             this.correct = 0;
             question.chosenCat = "";
@@ -143,11 +119,42 @@ class Question {
     }
 
 }
-//let game = new Quiz();
-//let question = new Question();
 
 
-/*document.addEventListener('DOMContentLoaded', (event) => {
-    let check = document.getElementById('nextQuestion');
-    check.addEventListener("click", question.checking);
-});*/
+document.addEventListener('DOMContentLoaded', (event) => {
+
+        //Allmän funktion som hämtar in data och skapar objekt med user-data, skulle kunna ha något liknande som en metod.
+        function getInfo() {
+        let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
+        let namn = document.getElementById('name').value;
+        let theCategory =  document.getElementById('category').value;
+        let cat;
+
+        if(theCategory == "Sport") {
+            document.getElementById('categoryDisplay').innerHTML = "Kategori: Sport";
+            cat = quizz.Sport;
+        }
+        else if(theCategory == "Teknik") {
+            document.getElementById('categoryDisplay').innerHTML = "Kategori: Teknik";
+            cat = quizz.Teknik;
+        }
+        else if(theCategory == "Gaming") {
+            document.getElementById('categoryDisplay').innerHTML = "Kategori: Gaming";
+            cat = quizz.Gaming;
+        }
+        else if(theCategory == "Historia") {
+            document.getElementById('categoryDisplay').innerHTML = "Kategori: Historia";
+            cat = quizz.Historia;
+        }
+        game = new Quiz(namn, nmrOfQuestions);
+        question = new Question(cat, nmrOfQuestions);
+        game.startGame();   
+    }
+
+
+    let getData = document.getElementById('start');
+    getData.addEventListener("click", getInfo);
+    
+    //let check = document.getElementById('nextQuestion');
+    //check.addEventListener("click", question.checking);
+});
