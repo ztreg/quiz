@@ -45,7 +45,7 @@ class Quiz {
             alert("Bra jobbat "  + this.name + " du fick " + this.correct + " poäng");
             this.done = 0;
             this.correct = 0;
-            question.chosenCat = "";
+            this.nmrOfQuestions = 0;
             let game = new Quiz();
            
         } 
@@ -99,7 +99,7 @@ class Question {
         for (let i = 0; i < responses.length && wrong == 0; i++) {  
             if(responses[i].checked == true && this.chosenCategory[this.i].answers[i].correct == true) {
                 right = 1;
-                console.log("rätt" + right);
+                console.log("Snyggt");
                 
             } else if(responses[i].checked == true && this.chosenCategory[this.i].answers[i].correct == false){
                 console.log("Du hade minst 1 fel och därför fick du inte poäng");
@@ -117,12 +117,10 @@ class Question {
         }
         game.startGame();
     }
-
 }
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
-
         //Allmän funktion som hämtar in data och skapar objekt med user-data, skulle kunna ha något liknande som en metod.
         function getInfo() {
         let nmrOfQuestions = document.getElementById('nmrOfQuestions').value;
@@ -146,6 +144,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.getElementById('categoryDisplay').innerHTML = "Kategori: Historia";
             cat = quizz.Historia;
         }
+        //Här skickas datan in
         game = new Quiz(namn, nmrOfQuestions);
         question = new Question(cat, nmrOfQuestions);
         game.startGame();   
@@ -154,7 +153,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     let getData = document.getElementById('start');
     getData.addEventListener("click", getInfo);
-    
-    //let check = document.getElementById('nextQuestion');
-    //check.addEventListener("click", question.checking);
 });
