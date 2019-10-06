@@ -43,9 +43,7 @@ class Quiz {
 
             document.getElementById('the_header').innerHTML = "Bra jobbat "  + this.name + " du fick " + this.correct + " poäng";
             alert("Bra jobbat "  + this.name + " du fick " + this.correct + " poäng");
-            this.done = 0;
-            this.correct = 0;
-            this.nmrOfQuestions = 0;
+            
             let game = new Quiz();
            
         } 
@@ -92,7 +90,7 @@ class Question {
 
     //Checkar om checkboxes som "skickas in" och kollar om dem är true / false i jämförelse med jsonfilen 
     // Om något av svaren är fel så den ur loopen och man får man 0 poäng, sedan anropas nästa
-    checking() {
+    correct() {
         let right = 0;
         let wrong = 0;
         let responses = document.getElementsByName("response");
